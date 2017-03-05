@@ -3,3 +3,7 @@
 //
 
 #include "paged_Array.h"
+
+class paged_Array {
+
+};
