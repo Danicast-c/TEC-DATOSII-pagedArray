@@ -5,10 +5,5 @@
 #ifndef PAGEDARRAY_FILEGNERATOR_H
 #define PAGEDARRAY_FILEGNERATOR_H
 
-
-class fileGnerator {
-
-};
-
-
+void fileGnerator(int size);
 #endif //PAGEDARRAY_FILEGNERATOR_H

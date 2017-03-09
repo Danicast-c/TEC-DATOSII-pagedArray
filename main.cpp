@@ -3,6 +3,9 @@
 #include "Quicksort.h"
 #include "Insertionsort.h"
 #include "ArrayConsolePrinter.h"
+#include "fileGnerator.h"
+#include "paged_Array.h"
+#include "slotManagr.h"
 
 using namespace std;
 void buffer_printer ( int bffer[], int lsize);
@@ -11,7 +14,7 @@ int main() {
     int * buffer;
     FILE *archivo;
     int num [] = {1,2,3,4,5,6,7,8,9};
-    archivo = fopen("/home/danielc/Git\ TEC\ /binary.dat", "w+b");
+    /**archivo = fopen("/home/danielc/Git\ TEC\ /binary.dat", "w+b");
     if (archivo) {
         cout << "El archivo se creo correctamente" << endl;
         fwrite(num, sizeof(int), 9 , archivo);
@@ -32,7 +35,15 @@ int main() {
     cout << "lsize: " << lsize << endl;
     cout << "contenido: ";
     buffer_printer(buffer,lsize);
-    free (buffer);
+    free (buffer); **/
+
+    fileGnerator(12);
+
+    paged_Array p_ar;
+    p_ar.test();
+
+    remove("Archivo.dat");
+
     return 0;
 }
 
@@ -48,5 +59,5 @@ void try_page (){
     archivo = fopen("/home/danielc/Git\ TEC\ /binary.dat", "w+b");
     fseek(archivo, 0, SEEK_END);
     long lsize = ftell(archivo);
-    rewind(archivo);j
+    rewind(archivo);
 }
