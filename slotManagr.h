@@ -13,6 +13,8 @@ public:
     void test ();
     int Array[256];
     void pagetoMemory (int page);
+    int getPosition(int position);
+    void savetoMemory(int id);
     void ID_modify(int new_id);
     int get_ID ();
 };

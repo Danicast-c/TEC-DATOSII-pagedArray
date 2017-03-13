@@ -20,8 +20,12 @@ int slotManagr::get_ID (){
     return ID;
 }
 
+int slotManagr::getPosition(int position){
+    return Array[position];
+}
 
 void slotManagr::pagetoMemory (int page){
+
     FILE *archivo;
     int i;
     archivo = fopen("/home/danielc/Git\ TEC\ /Archivo.dat", "r+");
@@ -32,4 +36,14 @@ void slotManagr::pagetoMemory (int page){
         Array[i] = buffer[i];
     }
     ID_modify(page);
+    fclose(archivo);
+
+}
+
+void slotManagr::savetoMemory(int id){
+    FILE *archivo;
+    archivo = fopen("/home/danielc/Git\ TEC\ /Archivo.dat", "r+");
+    fseek(archivo, (id*CANT), SEEK_SET);
+    fwrite(Array, sizeof(int), CANT  , archivo);
+    fclose(archivo);
 }

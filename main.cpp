@@ -37,11 +37,13 @@ int main() {
     buffer_printer(buffer,lsize);
     free (buffer); **/
 
-    fileGnerator(12);
+    fileGnerator(256);
 
     paged_Array p_ar;
-    p_ar.test();
 
+    int &c = p_ar[3000];
+
+    cout << endl << " FLAG 2: "<< p_ar[2] <<endl;
     remove("Archivo.dat");
 
     return 0;
