@@ -15,23 +15,23 @@ paged_Array::paged_Array(){
 
 
 
-int& paged_Array::operator[](const int index) {
+int &paged_Array::operator[](int index) {
 
     int result;
-    cout << " se ingreso como index: " << index << endl;
     int pageID = index / 256;
     int position_in_page = index%256;
-    cout << " se ingreso como page id: " << pageID << endl;
     int page_loaded = check_Page(pageID);
     if (page_loaded != -1) {
-        result= slotArray[page_loaded].getPosition(position_in_page); // por que la pagina si esta cargada
+
+        result=page_loaded;
     }
     else {
         int nueva_pagina = page_loader(pageID);
-        cout << " paso por el else" << endl;
-        result= slotArray[nueva_pagina].getPosition(position_in_page); // por que ya la pagina ya ha sido cargada
-        return result;
+        result = nueva_pagina;
+        slotArray[result].set_veces_usado(0);
     }
+    slotArray[result].suma_veces_usado();
+    return slotArray[result].Array[position_in_page];
 }
 
 
@@ -67,17 +67,45 @@ int paged_Array::check_freeSlot (){
 int paged_Array::page_loader (int page_num){
     int freeslot;
     freeslot = check_freeSlot();
+    //cout << endl<< "freeslot es: "<< freeslot << endl;
     int new_slot;
     if (freeslot != -1){
-        slotArray[freeslot].savetoMemory(slotArray[freeslot].get_ID());
+       slotArray[freeslot].savetoMemory(slotArray[freeslot].get_ID());
+       // slotArray[freeslot].savetoMemory(page_num);
+        //cout << "llama savetomemory: "<< slotArray[freeslot].get_ID()<<endl;
         slotArray[freeslot].pagetoMemory(page_num);
         new_slot = freeslot;
     }
     else{
-        //algoritmo de remplazo
-        slotArray[0].savetoMemory(slotArray[freeslot].get_ID());
-        slotArray[0].pagetoMemory(page_num);
-        new_slot = 0;
+       int mas_usada1= mas_usada();//algoritmo de remplazo
+       // cout << "mas usada= "<< mas_usada1 << endl;
+       slotArray[mas_usada1].savetoMemory(slotArray[mas_usada1].get_ID());
+        //slotArray[freeslot].savetoMemory(page_num);
+      // cout << "llama savetomemory: "<< slotArray[freeslot].get_ID()<<endl;
+        slotArray[mas_usada1].pagetoMemory(page_num);
+        new_slot = mas_usada1;
     }
     return new_slot;
+}
+
+int paged_Array::mas_usada() {
+    int veces=0;
+    int result = 0;
+    int i;
+    for (i=0;i<6;i++){
+        if (slotArray[i].get_veces_usado() > veces){
+            veces=slotArray[i].get_veces_usado();
+            result=i;
+        }
+    }
+    return result;
+
+}
+
+void paged_Array::saveAll (){
+    int i;
+    for (i=0; i<6;i++){
+        slotArray[i].savetoMemory(slotArray[i].get_ID());
+    }
+
 }

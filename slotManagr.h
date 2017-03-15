@@ -9,7 +9,13 @@
 class slotManagr {
 
 public:
-    int ID = -1;
+
+    int ID;
+    int veces_usado;
+    int get_veces_usado();
+    void suma_veces_usado();
+    void set_veces_usado(int num);
+    slotManagr();
     void test ();
     int Array[256];
     void pagetoMemory (int page);

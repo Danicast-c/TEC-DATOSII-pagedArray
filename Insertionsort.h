@@ -6,6 +6,8 @@
 #define PAGEDARRAY_INSERTIONSORT_H
 
 
-void insertion_Sort (int arr[], int length);
+#include "paged_Array.h"
+
+void insertion_Sort (paged_Array *arr, int length);
 
 #endif //PAGEDARRAY_INSERTIONSORT_H

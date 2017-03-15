@@ -6,54 +6,37 @@
 #include "fileGnerator.h"
 #include "paged_Array.h"
 #include "slotManagr.h"
+#include "Selectionsort.h"
 
 using namespace std;
-void buffer_printer ( int bffer[], int lsize);
+void p_ar_print ( paged_Array bffer, int lsize);
 
 int main() {
-    int * buffer;
-    FILE *archivo;
-    int num [] = {1,2,3,4,5,6,7,8,9};
-    /**archivo = fopen("/home/danielc/Git\ TEC\ /binary.dat", "w+b");
-    if (archivo) {
-        cout << "El archivo se creo correctamente" << endl;
-        fwrite(num, sizeof(int), 9 , archivo);
-        cout << "Se inserto num en el archivo" << endl;
-    }
-    else {
-        cout << "El archivo NO se creo" << endl;
-    }
+    int num [] = {1,39,77,4,23,12,7,72,9};
 
-    fseek(archivo, 0, SEEK_END);
-    long lsize = ftell(archivo);
-    rewind(archivo);
-    cout << "tamaño: " << lsize << endl;
-
-
-    buffer = (int*) malloc(sizeof(int)*lsize);
-    fread(buffer, sizeof(int),lsize,archivo);
-    cout << "lsize: " << lsize << endl;
-    cout << "contenido: ";
-    buffer_printer(buffer,lsize);
-    free (buffer); **/
-
-    fileGnerator(256);
+    int largo = 2304;
+    fileGnerator(largo);
 
     paged_Array p_ar;
+    cout << endl <<"contenido leido: "<<endl;
+    p_ar_print(p_ar,largo);
 
-    int &c = p_ar[3000];
 
-    cout << endl << " FLAG 2: "<< p_ar[2] <<endl;
-    remove("Archivo.dat");
+     selectionSort(&p_ar,largo);
+     p_ar.saveAll();
+
+   cout << endl << "Contenido ordenado: "<<endl;
+    p_ar_print(p_ar,largo);
+
 
     return 0;
 }
 
 
-void buffer_printer ( int bffer[], int lsize){
+void p_ar_print ( paged_Array bffer, int lsize){
     int i =0;
-    for (i = 1; i<lsize/4; i++){
-        cout << bffer[i-1] << ", ";
+    for (i = 0; i<lsize; i++){
+        cout << bffer[i] << ", ";
     }
 }
 void try_page (){

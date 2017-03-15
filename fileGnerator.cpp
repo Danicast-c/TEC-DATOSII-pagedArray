@@ -10,42 +10,46 @@ using namespace std;
 void fileGnerator (int size)
 {
     int i;
-    int arr [size];
-    int valor;
-    int * buffer;
+    int arr[size];
+    int valor=size;
 
-    for (i=0; i<size; i++)
-    {
-        valor= rand()%100;
+    for (i=0; i<size; i++) {
+        //valor= rand()%100;
         arr[i]=valor;
+        valor--;
     }
 
     FILE *archivo;
     archivo = fopen("/home/danielc/Git\ TEC\ /Archivo.dat", "w+b");
     if (archivo) {
         cout << "El archivo se creo correctamente" << endl;
-        rewind(archivo);
+        fseek(archivo,0,SEEK_SET);
         fwrite(arr, sizeof(int), size  , archivo);
         cout << "Se inserto num en el archivo" << endl;
     }
     else {
         cout << "El archivo NO se creo" << endl;
     }
+    fclose(archivo);
 
-    fseek(archivo, 0, SEEK_END);
-    long lsize = ftell(archivo);
-    rewind(archivo);
+
+
+    FILE *archivo1;
+    archivo1 = fopen("/home/danielc/Git\ TEC\ /Archivo.dat", "rb");
+
+    fseek(archivo1, 0, SEEK_END);
+    long lsize = ftell(archivo1);
+    rewind(archivo1);
     cout << "tamaño: " << lsize << endl;
 
-    buffer = (int*) malloc(sizeof(int)*lsize);
-    fread(buffer, sizeof(int),size,archivo);
+    int buffer [lsize/sizeof(int)];
+    fread(buffer, sizeof(int),size,archivo1);
     cout << "contenido: ";
 
-    for (i = 0; i<lsize/4; i++){
+    for (i = 0; i<lsize/sizeof(int); i++){
         cout << buffer[i] << ", ";
     }
-
-    fclose(archivo);
+    fclose(archivo1);
 
 
 
