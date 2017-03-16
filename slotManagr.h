@@ -16,7 +16,6 @@ public:
     void suma_veces_usado();
     void set_veces_usado(int num);
     slotManagr();
-    void test ();
     int Array[256];
     void pagetoMemory (int page);
     int getPosition(int position);

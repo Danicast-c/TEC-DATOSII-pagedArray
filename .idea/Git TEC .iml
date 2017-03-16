@@ -5,8 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Selectionsort.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/slotManagr.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/paged_Array.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ArrayConsolePrinter.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ArrayConsolePrinter.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Insertionsort.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Selectionsort.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/paged_Array.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/slotManagr.cpp" isTestSource="false" />
@@ -17,7 +16,6 @@
       <sourceFolder url="file://$MODULE_DIR$/fileGnerator.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Insertionsort.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/fileGnerator.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Insertionsort.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

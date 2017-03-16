@@ -13,8 +13,9 @@ paged_Array::paged_Array(){
 
 }
 
-
-
+/// @brief sobrecarga del operador
+/// @param el index
+/// @return el numero que se desea acceder
 int &paged_Array::operator[](int index) {
 
     int result;
@@ -34,7 +35,9 @@ int &paged_Array::operator[](int index) {
     return slotArray[result].Array[position_in_page];
 }
 
-
+/// @brief chequea la pag
+/// @param el id de la pag
+/// @return si la pagina esta cargada
 int paged_Array::check_Page(int pageID){
     int i;
     int result = -1;
@@ -46,7 +49,8 @@ int paged_Array::check_Page(int pageID){
     }
     return result;
 }
-
+/// @brief busca slots libres
+/// @return el numero de slot libre
 int paged_Array::check_freeSlot (){
     int i;
     int result = -1;
@@ -63,31 +67,29 @@ int paged_Array::check_freeSlot (){
     return result;
 
 }
-
+/// @brief carga la pagina
+/// @param numero de pagina
+/// @return el slot donde se cargo la pag
 int paged_Array::page_loader (int page_num){
     int freeslot;
     freeslot = check_freeSlot();
-    //cout << endl<< "freeslot es: "<< freeslot << endl;
     int new_slot;
     if (freeslot != -1){
        slotArray[freeslot].savetoMemory(slotArray[freeslot].get_ID());
-       // slotArray[freeslot].savetoMemory(page_num);
-        //cout << "llama savetomemory: "<< slotArray[freeslot].get_ID()<<endl;
         slotArray[freeslot].pagetoMemory(page_num);
         new_slot = freeslot;
     }
     else{
        int mas_usada1= mas_usada();//algoritmo de remplazo
-       // cout << "mas usada= "<< mas_usada1 << endl;
        slotArray[mas_usada1].savetoMemory(slotArray[mas_usada1].get_ID());
-        //slotArray[freeslot].savetoMemory(page_num);
-      // cout << "llama savetomemory: "<< slotArray[freeslot].get_ID()<<endl;
         slotArray[mas_usada1].pagetoMemory(page_num);
         new_slot = mas_usada1;
     }
     return new_slot;
 }
 
+/// @brief busca la pag mas usada
+/// @return el numero de slot con la pag mas usada
 int paged_Array::mas_usada() {
     int veces=0;
     int result = 0;
@@ -102,6 +104,7 @@ int paged_Array::mas_usada() {
 
 }
 
+/// @brief salva todas las paginas cargadas en slots
 void paged_Array::saveAll (){
     int i;
     for (i=0; i<6;i++){
